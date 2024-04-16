@@ -24,4 +24,25 @@
         android:layout_marginEnd="50dp"
         android:layout_marginBottom="200dp"
         android:src="@drawable/main_img_boy" />
+
+    <LinearLayout
+        android:id="@+id/startLayout"
+        android:layout_width="wrap_content"
+        android:layout_height="100dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:padding="5dp"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/button2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/start"
+            android:background="@drawable/button_stroke_black_95_press"
+            android:paddingTop="5dp"
+            android:textSize="24sp"
+            android:textColor="@color/black_95" />
+    </LinearLayout>
+
 </RelativeLayout>
