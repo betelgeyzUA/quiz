@@ -5,6 +5,7 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context=".MainActivity">
 
     <ImageView
@@ -35,14 +36,14 @@
         android:orientation="horizontal">
 
         <Button
-            android:id="@+id/button2"
+            android:id="@+id/buttonStart"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/start"
-            android:background="@drawable/button_stroke_black_95_press"
+            android:background="@drawable/button_stroke_black_50_press"
             android:paddingTop="5dp"
             android:textSize="24sp"
-            android:textColor="@color/black_95" />
+            android:textColor="@color/black_50" />
     </LinearLayout>
 
 </RelativeLayout>
