@@ -40,7 +40,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="10dp"
-                    android:background="@drawable/button_strole_white_press_blue"
+                    android:background="@drawable/button_stroke_white_press_blue"
                     android:text="@string/back"
                     android:textSize="24sp" />
 
@@ -56,7 +56,6 @@
                     android:textSize="24sp" />
 
             </LinearLayout>
-
             <LinearLayout
                 android:id="@+id/line2"
                 android:layout_width="match_parent"
@@ -203,6 +202,62 @@
                     android:layout_height="10dp"
                     android:layout_weight="1"
                     android:background="@drawable/style_pointer" />
+            </LinearLayout>
+            <LinearLayout
+                android:id="@+id/line3"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="10dp"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:id="@+id/img_left"
+                    android:layout_width="match_parent"
+                    android:layout_height="320dp"
+                    android:layout_marginEnd="5dp"
+                    android:scaleType="centerCrop"
+                    android:background="@drawable/style_img_universal"
+                    android:layout_weight="1"
+                    android:src="@drawable/testpng" />
+
+                <ImageView
+                    android:id="@+id/img_right"
+                    android:layout_width="match_parent"
+                    android:layout_height="320dp"
+                    android:layout_marginEnd="5dp"
+                    android:scaleType="centerCrop"
+                    android:background="@drawable/style_img_universal"
+                    android:layout_weight="1"
+                    android:src="@drawable/testpng" />
+            </LinearLayout>
+            <LinearLayout
+                android:id="@+id/line4"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="10dp"
+                android:orientation="horizontal">
+                    <TextView
+                        android:id="@+id/text_left"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Text left"
+                        android:textColor="@color/white"
+                        android:textSize="30sp"
+                        android:layout_marginEnd="5dp"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        />
+                        <TextView
+                            android:id="@+id/text_right"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Text Right"
+                            android:textColor="@color/white"
+                            android:textSize="30sp"
+                            android:layout_marginEnd="5dp"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                        />
             </LinearLayout>
         </LinearLayout>
     </LinearLayout>
