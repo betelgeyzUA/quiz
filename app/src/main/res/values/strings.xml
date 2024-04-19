@@ -1,8 +1,9 @@
 <resources>
     <string name="app_name">Quiz</string>
-    <string name="start">Начать</string>
+    <string name="start">Почати</string>
     <string name="back">Назад</string>
-    <string name="press_exit">Нажмите еще раз чтоби вийти</string>
-    <string name="level">Уровень:</string>
+    <string name="press_exit">Натисніть ще раз, щоб вийти</string>
+    <string name="level">Рівень:</string>
+    <string name="text_continue">Продовжити</string>
     <string name="x">X</string>
 </resources>

@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="level_one">Виберіть цифру яка більше.\nпитання можуть повторюватися доки ви не наберете 20 очок</string>
+</resources>
