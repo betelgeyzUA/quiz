@@ -19,15 +19,28 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 import java.util.Objects;
+import java.util.Random;
 
 public class Level1 extends AppCompatActivity {
 
     Dialog dialog;
+
+    public int numLeft;
+    public int numRight;
+    Array array = new Array();
+    Random random = new Random();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.universal);
+
+        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
+            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
+            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
+            return insets;
+        });
 
         TextView text_levels = findViewById(R.id.text_levels);
         text_levels.setText(R.string.level_1);
@@ -50,6 +63,9 @@ public class Level1 extends AppCompatActivity {
 
         final ImageView img_right = (ImageView)findViewById(R.id.img_right);
         img_right.setClipToOutline(true);
+
+        final TextView text_left = findViewById(R.id.text_left);
+        final TextView text_right = findViewById(R.id.text_right);
 
         dialog = new Dialog(this);
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
@@ -89,11 +105,18 @@ public class Level1 extends AppCompatActivity {
 
         dialog.show();
 
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
-            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
-            return insets;
-        });
+        numLeft = random.nextInt(10);
+        img_left.setImageResource(array.images1[numLeft]);
+        text_left.setText(array.texts1[numLeft]);
+
+        numRight = random.nextInt(10);
+
+        while (numLeft == numRight) {
+            numRight = random.nextInt(10);
+        }
+
+        img_right.setImageResource(array.images1[numRight]);
+        text_right.setText(array.texts1[numRight]);
     }
 
     public void onBackPressed() {
