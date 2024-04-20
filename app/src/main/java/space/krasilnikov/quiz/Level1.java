@@ -29,6 +29,9 @@ public class Level1 extends AppCompatActivity {
         EdgeToEdge.enable(this);
         setContentView(R.layout.universal);
 
+        TextView text_levels = findViewById(R.id.text_levels);
+        text_levels.setText(R.string.level_1);
+
         Button button_back = (Button)findViewById(R.id.button_back);
         button_back.setOnClickListener(new View.OnClickListener() {
             @Override

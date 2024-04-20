@@ -4,6 +4,7 @@
     <string name="back">Назад</string>
     <string name="press_exit">Натисніть ще раз, щоб вийти</string>
     <string name="level">Рівень:</string>
+    <string name="level_1">Рівень: 1</string>
     <string name="text_continue">Продовжити</string>
     <string name="x">X</string>
 </resources>
