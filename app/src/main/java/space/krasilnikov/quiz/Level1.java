@@ -6,8 +6,11 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.Window;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -29,7 +32,9 @@ public class Level1 extends AppCompatActivity {
     public int numRight;
     Array array = new Array();
     Random random = new Random();
+    public int count = 0;
 
+    @SuppressLint("ClickableViewAccessibility")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -74,6 +79,8 @@ public class Level1 extends AppCompatActivity {
         dialog.setCancelable(false);
 
         TextView btn_close = (TextView)dialog.findViewById(R.id.btn_close);
+
+        // Диалоговое окно закрить
         btn_close.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -90,6 +97,7 @@ public class Level1 extends AppCompatActivity {
             }
         });
 
+        // Диалоговое окно продолжить
         Button btn_continue = (Button)dialog.findViewById(R.id.btn_continue);
         btn_continue.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -105,10 +113,15 @@ public class Level1 extends AppCompatActivity {
 
         dialog.show();
 
+        // Анимация
+        final Animation a = AnimationUtils.loadAnimation(Level1.this, R.anim.alpha);
+
+        // Генерируєм левую сторону
         numLeft = random.nextInt(10);
         img_left.setImageResource(array.images1[numLeft]);
         text_left.setText(array.texts1[numLeft]);
 
+        // Генерируєм правую сторону
         numRight = random.nextInt(10);
 
         while (numLeft == numRight) {
@@ -117,6 +130,25 @@ public class Level1 extends AppCompatActivity {
 
         img_right.setImageResource(array.images1[numRight]);
         text_right.setText(array.texts1[numRight]);
+
+        // Нажатиє на левую картинку
+        img_left.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                // Касание картинки
+                if (event.getAction() == MotionEvent.ACTION_DOWN) {
+                    img_right.setEnabled(false); // Блокируем правую картинку
+                    if (numLeft > numRight) {
+                        img_left.setImageResource(R.drawable.image_true);
+                    } else {
+                        img_left.setImageResource(R.drawable.image_false);
+                    }
+                } else if (event.getAction() == MotionEvent.ACTION_UP) {
+                    
+                }
+                return true;
+            }
+        });
     }
 
     public void onBackPressed() {
