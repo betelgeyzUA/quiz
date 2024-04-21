@@ -25,32 +25,30 @@
                 android:textStyle="bold"
                 android:gravity="center"
                 android:background="@drawable/button_stroke_press_close"
-                android:layout_gravity="start"
+                android:layout_gravity="end"
             />
-            <ImageView
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:id="@+id/preview_img"
-                android:src="@drawable/preview_wim_one"
-                android:layout_weight="60"
-                android:layout_marginTop="10dp"
-            />
-            <TextView
+
+            <ScrollView
                 android:layout_width="wrap_content"
                 android:layout_height="0dp"
-                android:id="@+id/text_description"
-                android:text="@string/level_one"
-                android:layout_weight="30"
                 android:layout_marginTop="10dp"
-                android:textSize="20sp"
-                android:textColor="@color/black_60"
-            />
+                android:layout_weight="85">
+
+                <TextView
+                    android:id="@+id/text_description_end"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="@string/level_one_end"
+                    android:textColor="@color/black_60"
+                    android:textSize="20sp" />
+            </ScrollView>
+
             <Button
                 android:layout_width="wrap_content"
                 android:layout_height="0dp"
                 android:id="@+id/btn_continue"
                 android:background="@drawable/button_stroke_black_50_press"
-                android:layout_weight="10"
+                android:layout_weight="15"
                 android:text="@string/text_continue"
                 android:textColor="@color/black_60"
                 android:textSize="16sp"

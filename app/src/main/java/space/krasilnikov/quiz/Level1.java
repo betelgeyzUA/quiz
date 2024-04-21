@@ -208,10 +208,88 @@ public class Level1 extends AppCompatActivity {
                         }
 
                         img_right.setImageResource(array.images1[numRight]);
-                        img_left.startAnimation(a);
+                        img_right.startAnimation(a);
                         text_right.setText(array.texts1[numRight]);
 
                         img_right.setEnabled(true);
+                    }
+                }
+                return true;
+            }
+        });
+
+        // Нажатиє на правую картинку
+        img_right.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                // Касание картинки
+                if (event.getAction() == MotionEvent.ACTION_DOWN) {
+                    img_left.setEnabled(false); // Блокируем левую картинку
+                    if (numLeft < numRight) {
+                        img_right.setImageResource(R.drawable.image_true);
+                    } else {
+                        img_right.setImageResource(R.drawable.image_false);
+                    }
+                } else if (event.getAction() == MotionEvent.ACTION_UP) {
+                    if (numLeft < numRight) {
+                        if (count < 20) {
+                            count++;
+                        }
+
+                        // Красим серим
+                        for (int i = 0; i < 20; i++) {
+                            TextView tv = findViewById(progress[i]);
+                            tv.setBackgroundResource(R.drawable.style_pointer);
+                        }
+
+                        // Красим зеленим количество верных ответов
+                        for (int i = 0; i < count; i++) {
+                            TextView tv = findViewById(progress[i]);
+                            tv.setBackgroundResource(R.drawable.style_pointer_green);
+                        }
+                    } else {
+                        if (count > 0) {
+                            if (count == 1) {
+                                count = 0;
+                            } else {
+                                count -= 2;
+                            }
+
+                            // Красим серим
+                            for (int i = 0; i < 19; i++) {
+                                TextView tv = findViewById(progress[i]);
+                                tv.setBackgroundResource(R.drawable.style_pointer);
+                            }
+
+                            // Красим зеленим количество верных ответов
+                            for (int i = 0; i < count; i++) {
+                                TextView tv = findViewById(progress[i]);
+                                tv.setBackgroundResource(R.drawable.style_pointer_green);
+                            }
+                        }
+                    }
+
+                    if (count == 20) {
+
+                    } else {
+                        // Генерируєм левую сторону
+                        numLeft = random.nextInt(10);
+                        img_left.setImageResource(array.images1[numLeft]);
+                        img_left.startAnimation(a);
+                        text_left.setText(array.texts1[numLeft]);
+
+                        // Генерируєм правую сторону
+                        numRight = random.nextInt(10);
+
+                        while (numLeft == numRight) {
+                            numRight = random.nextInt(10);
+                        }
+
+                        img_right.setImageResource(array.images1[numRight]);
+                        img_right.startAnimation(a);
+                        text_right.setText(array.texts1[numRight]);
+
+                        img_left.setEnabled(true);
                     }
                 }
                 return true;
