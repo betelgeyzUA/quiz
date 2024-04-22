@@ -9,7 +9,6 @@ import android.os.Bundle;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.Window;
-import android.view.WindowManager;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.Button;
@@ -25,10 +24,9 @@ import androidx.core.view.WindowInsetsCompat;
 import java.util.Objects;
 import java.util.Random;
 
-public class Level1 extends AppCompatActivity {
+public class Level2 extends AppCompatActivity {
 
     Dialog dialog;
-    Dialog dialogEnd;
 
     public int numLeft;
     public int numRight;
@@ -57,7 +55,7 @@ public class Level1 extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 try {
-                    Intent intent = new Intent(Level1.this, GameLevels.class);
+                    Intent intent = new Intent(Level2.this, GameLevels.class);
                     startActivity(intent); finish();
                 } catch (Exception e) {
 
@@ -74,52 +72,6 @@ public class Level1 extends AppCompatActivity {
         final TextView text_left = findViewById(R.id.text_left);
         final TextView text_right = findViewById(R.id.text_right);
 
-        dialogEnd = new Dialog(this);
-        dialogEnd.requestWindowFeature(Window.FEATURE_NO_TITLE);
-        dialogEnd.setContentView(R.layout.dialogend);
-        Objects.requireNonNull(dialogEnd.getWindow()).setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-        dialogEnd.getWindow().setLayout(WindowManager.LayoutParams.MATCH_PARENT,
-                WindowManager.LayoutParams.MATCH_PARENT);
-        dialogEnd.setCancelable(false);
-
-        TextView btn_close2 = (TextView)dialogEnd.findViewById(R.id.btn_close);
-
-        // Диалоговое окно закрить
-        btn_close2.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                try {
-                    Intent intent = new Intent(Level1.this, GameLevels.class);
-                    startActivity(intent);
-                    finish();
-                    dialogEnd.cancel();
-                } catch (Exception e) {
-
-                }
-
-                dialogEnd.dismiss();
-            }
-        });
-
-        // Диалоговое окно продолжить
-        Button btn_continue2 = (Button)dialogEnd.findViewById(R.id.btn_continue);
-        btn_continue2.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                try {
-                    Intent intent = new Intent(Level1.this, Level2.class);
-                    startActivity(intent);
-                    finish();
-                    dialogEnd.dismiss();
-                } catch (Exception e) {
-
-                }
-
-            }
-        });
-
-        //______________________________
-
         dialog = new Dialog(this);
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         dialog.setContentView(R.layout.previewdialog);
@@ -133,7 +85,7 @@ public class Level1 extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 try {
-                    Intent intent = new Intent(Level1.this, GameLevels.class);
+                    Intent intent = new Intent(Level2.this, GameLevels.class);
                     startActivity(intent);
                     finish();
                     dialog.cancel();
@@ -161,9 +113,6 @@ public class Level1 extends AppCompatActivity {
 
         dialog.show();
 
-
-        //______________________________
-
         // Прогресс игри
 
         final int[] progress = {
@@ -174,7 +123,7 @@ public class Level1 extends AppCompatActivity {
         };
 
         // Анимация
-        final Animation a = AnimationUtils.loadAnimation(Level1.this, R.anim.alpha);
+        final Animation a = AnimationUtils.loadAnimation(Level2.this, R.anim.alpha);
 
         // Генерируєм левую сторону
         numLeft = random.nextInt(10);
@@ -243,7 +192,7 @@ public class Level1 extends AppCompatActivity {
                     }
 
                     if (count == 20) {
-                        dialogEnd.show();
+
                     } else {
                         // Генерируєм левую сторону
                         numLeft = random.nextInt(10);
@@ -321,7 +270,7 @@ public class Level1 extends AppCompatActivity {
                     }
 
                     if (count == 20) {
-                        dialogEnd.show();
+
                     } else {
                         // Генерируєм левую сторону
                         numLeft = random.nextInt(10);
@@ -351,7 +300,7 @@ public class Level1 extends AppCompatActivity {
     public void onBackPressed() {
         super.onBackPressed();
         try {
-            Intent intent = new Intent(Level1.this, GameLevels.class);
+            Intent intent = new Intent(Level2.this, GameLevels.class);
             startActivity(intent);
             finish();
         } catch (Exception e) {
