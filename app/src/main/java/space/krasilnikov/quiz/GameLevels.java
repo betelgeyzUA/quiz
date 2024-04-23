@@ -33,12 +33,27 @@ public class GameLevels extends AppCompatActivity {
             }
         });
 
+        // Переход на первий уровень
         TextView text_view = (TextView)findViewById(R.id.textView1);
         text_view.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 try {
                     Intent intent = new Intent(GameLevels.this, Level1.class);
+                    startActivity(intent); finish();
+                } catch (Exception e) {
+
+                }
+            }
+        });
+
+        // Переход на второй уровень
+        TextView text_view_2 = (TextView)findViewById(R.id.textView2);
+        text_view_2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                try {
+                    Intent intent = new Intent(GameLevels.this, Level2.class);
                     startActivity(intent); finish();
                 } catch (Exception e) {
 

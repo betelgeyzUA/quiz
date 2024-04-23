@@ -1,5 +1,7 @@
 package space.krasilnikov.quiz;
 
+import static space.krasilnikov.quiz.R.*;
+
 import android.annotation.SuppressLint;
 import android.app.Dialog;
 import android.content.Intent;
@@ -27,7 +29,6 @@ import java.util.Random;
 public class Level2 extends AppCompatActivity {
 
     Dialog dialog;
-
     public int numLeft;
     public int numRight;
     Array array = new Array();
@@ -77,6 +78,13 @@ public class Level2 extends AppCompatActivity {
         dialog.setContentView(R.layout.previewdialog);
         Objects.requireNonNull(dialog.getWindow()).setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
         dialog.setCancelable(false);
+
+        // установить картинку в диалоговое окно
+        ImageView previewdialog = (ImageView) dialog.findViewById(R.id.preview_img);
+        previewdialog.setImageResource(R.drawable.preview_win_two);
+//        // установить текст задания в диалоговое окно
+        TextView textdescription = (TextView) dialog.findViewById(R.id.text_description);
+        textdescription.setText(R.string.level_two);
 
         TextView btn_close = (TextView)dialog.findViewById(R.id.btn_close);
 
