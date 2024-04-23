@@ -1,6 +1,10 @@
 package space.krasilnikov.quiz;
 
-import static space.krasilnikov.quiz.R.*;
+import static space.krasilnikov.quiz.R.anim;
+import static space.krasilnikov.quiz.R.drawable;
+import static space.krasilnikov.quiz.R.id;
+import static space.krasilnikov.quiz.R.layout;
+import static space.krasilnikov.quiz.R.string;
 
 import android.annotation.SuppressLint;
 import android.app.Dialog;
@@ -16,6 +20,7 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
@@ -27,7 +32,7 @@ import androidx.core.view.WindowInsetsCompat;
 import java.util.Objects;
 import java.util.Random;
 
-public class Level2 extends AppCompatActivity {
+public class Level3 extends AppCompatActivity {
 
     Dialog dialog;
     Dialog dialogEnd;
@@ -42,23 +47,23 @@ public class Level2 extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
-        setContentView(R.layout.universal);
+        setContentView(layout.universal);
 
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
+        ViewCompat.setOnApplyWindowInsetsListener(findViewById(id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
 
-        TextView text_levels = findViewById(R.id.text_levels);
-        text_levels.setText(R.string.level_1);
+        TextView text_levels = findViewById(id.text_levels);
+        text_levels.setText(string.level_1);
 
-        Button button_back = (Button)findViewById(R.id.button_back);
+        Button button_back = (Button)findViewById(id.button_back);
         button_back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 try {
-                    Intent intent = new Intent(Level2.this, GameLevels.class);
+                    Intent intent = new Intent(Level3.this, GameLevels.class);
                     startActivity(intent); finish();
                 } catch (Exception e) {
 
@@ -66,36 +71,41 @@ public class Level2 extends AppCompatActivity {
             }
         });
 
-        final ImageView img_left = (ImageView)findViewById(R.id.img_left);
+        final ImageView img_left = (ImageView)findViewById(id.img_left);
         img_left.setClipToOutline(true);
 
-        final ImageView img_right = (ImageView)findViewById(R.id.img_right);
+        final ImageView img_right = (ImageView)findViewById(id.img_right);
         img_right.setClipToOutline(true);
 
-        final TextView text_left = findViewById(R.id.text_left);
-        final TextView text_right = findViewById(R.id.text_right);
+        final TextView text_left = findViewById(id.text_left);
+        final TextView text_right = findViewById(id.text_right);
 
         dialog = new Dialog(this);
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-        dialog.setContentView(R.layout.previewdialog);
+        dialog.setContentView(layout.previewdialog);
         Objects.requireNonNull(dialog.getWindow()).setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
         dialog.setCancelable(false);
 
         // установить картинку в диалоговое окно
-        ImageView previewdialog = (ImageView) dialog.findViewById(R.id.preview_img);
-        previewdialog.setImageResource(R.drawable.preview_win_two);
-//        // установить текст задания в диалоговое окно
-        TextView textdescription = (TextView) dialog.findViewById(R.id.text_description);
-        textdescription.setText(R.string.level_two);
+        ImageView previewdialog = (ImageView) dialog.findViewById(id.preview_img);
+        previewdialog.setImageResource(drawable.preview_win_three);
 
-        TextView btn_close = (TextView)dialog.findViewById(R.id.btn_close);
+        // установить фон в диалоговое окно
+        LinearLayout dialog_fon = dialog.findViewById(id.dialogfon);
+        dialog_fon.setBackgroundResource(drawable.preview_background_three);
+
+        // установить текст задания в диалоговое окно
+        TextView textdescription = (TextView) dialog.findViewById(id.text_description);
+        textdescription.setText(string.level_three);
+
+        TextView btn_close = (TextView)dialog.findViewById(id.btn_close);
 
         // Диалоговое окно закрить
         btn_close.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 try {
-                    Intent intent = new Intent(Level2.this, GameLevels.class);
+                    Intent intent = new Intent(Level3.this, GameLevels.class);
                     startActivity(intent);
                     finish();
                     dialog.cancel();
@@ -108,7 +118,7 @@ public class Level2 extends AppCompatActivity {
         });
 
         // Диалоговое окно продолжить
-        Button btn_continue = (Button)dialog.findViewById(R.id.btn_continue);
+        Button btn_continue = (Button)dialog.findViewById(id.btn_continue);
         btn_continue.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -127,20 +137,20 @@ public class Level2 extends AppCompatActivity {
 
         dialogEnd = new Dialog(this);
         dialogEnd.requestWindowFeature(Window.FEATURE_NO_TITLE);
-        dialogEnd.setContentView(R.layout.dialogend);
+        dialogEnd.setContentView(layout.dialogend);
         Objects.requireNonNull(dialogEnd.getWindow()).setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
         dialogEnd.getWindow().setLayout(WindowManager.LayoutParams.MATCH_PARENT,
                 WindowManager.LayoutParams.MATCH_PARENT);
         dialogEnd.setCancelable(false);
 
-        TextView btn_close2 = (TextView)dialogEnd.findViewById(R.id.btn_close);
+        TextView btn_close2 = (TextView)dialogEnd.findViewById(id.btn_close);
 
         // Диалоговое окно закрить
         btn_close2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 try {
-                    Intent intent = new Intent(Level2.this, GameLevels.class);
+                    Intent intent = new Intent(Level3.this, GameLevels.class);
                     startActivity(intent);
                     finish();
                     dialogEnd.cancel();
@@ -153,12 +163,12 @@ public class Level2 extends AppCompatActivity {
         });
 
         // Диалоговое окно продолжить
-        Button btn_continue2 = (Button)dialogEnd.findViewById(R.id.btn_continue);
+        Button btn_continue2 = (Button)dialogEnd.findViewById(id.btn_continue);
         btn_continue2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 try {
-                    Intent intent = new Intent(Level2.this, Level3.class);
+                    Intent intent = new Intent(Level3.this, Level3.class);
                     startActivity(intent);
                     finish();
                     dialogEnd.dismiss();
@@ -170,21 +180,21 @@ public class Level2 extends AppCompatActivity {
         });
 
         TextView text_description_end = dialogEnd.findViewById(id.text_description_end);
-        text_description_end.setText(R.string.level_two_end);
+        text_description_end.setText(string.level_two_end);
 
         //______________________________
 
         // Прогресс игри
 
         final int[] progress = {
-            R.id.point1, R.id.point2, R.id.point3, R.id.point4, R.id.point5,
-            R.id.point6, R.id.point7, R.id.point8, R.id.point9, R.id.point10,
-            R.id.point11, R.id.point12, R.id.point13, R.id.point14, R.id.point15,
-            R.id.point16, R.id.point17, R.id.point18, R.id.point19, R.id.point20
+            id.point1, id.point2, id.point3, id.point4, id.point5,
+            id.point6, id.point7, id.point8, id.point9, id.point10,
+            id.point11, id.point12, id.point13, id.point14, id.point15,
+            id.point16, id.point17, id.point18, id.point19, id.point20
         };
 
         // Анимация
-        final Animation a = AnimationUtils.loadAnimation(Level2.this, R.anim.alpha);
+        final Animation a = AnimationUtils.loadAnimation(Level3.this, anim.alpha);
 
         // Генерируєм левую сторону
         numLeft = random.nextInt(10);
@@ -209,9 +219,9 @@ public class Level2 extends AppCompatActivity {
                 if (event.getAction() == MotionEvent.ACTION_DOWN) {
                     img_right.setEnabled(false); // Блокируем правую картинку
                     if (numLeft > numRight) {
-                        img_left.setImageResource(R.drawable.image_true);
+                        img_left.setImageResource(drawable.image_true);
                     } else {
-                        img_left.setImageResource(R.drawable.image_false);
+                        img_left.setImageResource(drawable.image_false);
                     }
                 } else if (event.getAction() == MotionEvent.ACTION_UP) {
                     if (numLeft > numRight) {
@@ -222,13 +232,13 @@ public class Level2 extends AppCompatActivity {
                         // Красим серим
                         for (int i = 0; i < 20; i++) {
                             TextView tv = findViewById(progress[i]);
-                            tv.setBackgroundResource(R.drawable.style_pointer);
+                            tv.setBackgroundResource(drawable.style_pointer);
                         }
 
                         // Красим зеленим количество верных ответов
                         for (int i = 0; i < count; i++) {
                             TextView tv = findViewById(progress[i]);
-                            tv.setBackgroundResource(R.drawable.style_pointer_green);
+                            tv.setBackgroundResource(drawable.style_pointer_green);
                         }
                     } else {
                         if (count > 0) {
@@ -241,13 +251,13 @@ public class Level2 extends AppCompatActivity {
                             // Красим серим
                             for (int i = 0; i < 19; i++) {
                                 TextView tv = findViewById(progress[i]);
-                                tv.setBackgroundResource(R.drawable.style_pointer);
+                                tv.setBackgroundResource(drawable.style_pointer);
                             }
 
                             // Красим зеленим количество верных ответов
                             for (int i = 0; i < count; i++) {
                                 TextView tv = findViewById(progress[i]);
-                                tv.setBackgroundResource(R.drawable.style_pointer_green);
+                                tv.setBackgroundResource(drawable.style_pointer_green);
                             }
                         }
                     }
@@ -287,9 +297,9 @@ public class Level2 extends AppCompatActivity {
                 if (event.getAction() == MotionEvent.ACTION_DOWN) {
                     img_left.setEnabled(false); // Блокируем левую картинку
                     if (numLeft < numRight) {
-                        img_right.setImageResource(R.drawable.image_true);
+                        img_right.setImageResource(drawable.image_true);
                     } else {
-                        img_right.setImageResource(R.drawable.image_false);
+                        img_right.setImageResource(drawable.image_false);
                     }
                 } else if (event.getAction() == MotionEvent.ACTION_UP) {
                     if (numLeft < numRight) {
@@ -300,13 +310,13 @@ public class Level2 extends AppCompatActivity {
                         // Красим серим
                         for (int i = 0; i < 20; i++) {
                             TextView tv = findViewById(progress[i]);
-                            tv.setBackgroundResource(R.drawable.style_pointer);
+                            tv.setBackgroundResource(drawable.style_pointer);
                         }
 
                         // Красим зеленим количество верных ответов
                         for (int i = 0; i < count; i++) {
                             TextView tv = findViewById(progress[i]);
-                            tv.setBackgroundResource(R.drawable.style_pointer_green);
+                            tv.setBackgroundResource(drawable.style_pointer_green);
                         }
                     } else {
                         if (count > 0) {
@@ -319,13 +329,13 @@ public class Level2 extends AppCompatActivity {
                             // Красим серим
                             for (int i = 0; i < 19; i++) {
                                 TextView tv = findViewById(progress[i]);
-                                tv.setBackgroundResource(R.drawable.style_pointer);
+                                tv.setBackgroundResource(drawable.style_pointer);
                             }
 
                             // Красим зеленим количество верных ответов
                             for (int i = 0; i < count; i++) {
                                 TextView tv = findViewById(progress[i]);
-                                tv.setBackgroundResource(R.drawable.style_pointer_green);
+                                tv.setBackgroundResource(drawable.style_pointer_green);
                             }
                         }
                     }
@@ -361,7 +371,7 @@ public class Level2 extends AppCompatActivity {
     public void onBackPressed() {
         super.onBackPressed();
         try {
-            Intent intent = new Intent(Level2.this, GameLevels.class);
+            Intent intent = new Intent(Level3.this, GameLevels.class);
             startActivity(intent);
             finish();
         } catch (Exception e) {

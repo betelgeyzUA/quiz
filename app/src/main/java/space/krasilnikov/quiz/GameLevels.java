@@ -61,6 +61,20 @@ public class GameLevels extends AppCompatActivity {
             }
         });
 
+        // Переход на третий уровень
+        TextView text_view_3 = (TextView)findViewById(R.id.textView3);
+        text_view_3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                try {
+                    Intent intent = new Intent(GameLevels.this, Level3.class);
+                    startActivity(intent); finish();
+                } catch (Exception e) {
+
+                }
+            }
+        });
+
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.gamelevels), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
