@@ -74,6 +74,49 @@ public class Level1 extends AppCompatActivity {
         final TextView text_left = findViewById(R.id.text_left);
         final TextView text_right = findViewById(R.id.text_right);
 
+        dialog = new Dialog(this);
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        dialog.setContentView(R.layout.previewdialog);
+        Objects.requireNonNull(dialog.getWindow()).setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        dialog.setCancelable(false);
+
+        TextView btn_close = (TextView)dialog.findViewById(R.id.btn_close);
+
+        // Диалоговое окно закрить
+        btn_close.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                try {
+                    Intent intent = new Intent(Level1.this, GameLevels.class);
+                    startActivity(intent);
+                    finish();
+                    dialog.cancel();
+                } catch (Exception e) {
+
+                }
+
+                dialog.dismiss();
+            }
+        });
+
+        // Диалоговое окно продолжить
+        Button btn_continue = (Button)dialog.findViewById(R.id.btn_continue);
+        btn_continue.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                try {
+                    dialog.dismiss();
+                } catch (Exception e) {
+
+                }
+
+            }
+        });
+
+        dialog.show();
+
+        //______________________________
+
         dialogEnd = new Dialog(this);
         dialogEnd.requestWindowFeature(Window.FEATURE_NO_TITLE);
         dialogEnd.setContentView(R.layout.dialogend);
@@ -117,50 +160,6 @@ public class Level1 extends AppCompatActivity {
 
             }
         });
-
-        //______________________________
-
-        dialog = new Dialog(this);
-        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-        dialog.setContentView(R.layout.previewdialog);
-        Objects.requireNonNull(dialog.getWindow()).setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-        dialog.setCancelable(false);
-
-        TextView btn_close = (TextView)dialog.findViewById(R.id.btn_close);
-
-        // Диалоговое окно закрить
-        btn_close.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                try {
-                    Intent intent = new Intent(Level1.this, GameLevels.class);
-                    startActivity(intent);
-                    finish();
-                    dialog.cancel();
-                } catch (Exception e) {
-
-                }
-
-                dialog.dismiss();
-            }
-        });
-
-        // Диалоговое окно продолжить
-        Button btn_continue = (Button)dialog.findViewById(R.id.btn_continue);
-        btn_continue.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                try {
-                    dialog.dismiss();
-                } catch (Exception e) {
-
-                }
-
-            }
-        });
-
-        dialog.show();
-
 
         //______________________________
 

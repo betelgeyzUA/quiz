@@ -11,6 +11,7 @@ import android.os.Bundle;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.Window;
+import android.view.WindowManager;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.Button;
@@ -29,6 +30,7 @@ import java.util.Random;
 public class Level2 extends AppCompatActivity {
 
     Dialog dialog;
+    Dialog dialogEnd;
     public int numLeft;
     public int numRight;
     Array array = new Array();
@@ -121,6 +123,57 @@ public class Level2 extends AppCompatActivity {
 
         dialog.show();
 
+        //______________________________
+
+        dialogEnd = new Dialog(this);
+        dialogEnd.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        dialogEnd.setContentView(R.layout.dialogend);
+        Objects.requireNonNull(dialogEnd.getWindow()).setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        dialogEnd.getWindow().setLayout(WindowManager.LayoutParams.MATCH_PARENT,
+                WindowManager.LayoutParams.MATCH_PARENT);
+        dialogEnd.setCancelable(false);
+
+        TextView btn_close2 = (TextView)dialogEnd.findViewById(R.id.btn_close);
+
+        // Диалоговое окно закрить
+        btn_close2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                try {
+                    Intent intent = new Intent(Level2.this, GameLevels.class);
+                    startActivity(intent);
+                    finish();
+                    dialogEnd.cancel();
+                } catch (Exception e) {
+
+                }
+
+                dialogEnd.dismiss();
+            }
+        });
+
+        // Диалоговое окно продолжить
+        Button btn_continue2 = (Button)dialogEnd.findViewById(R.id.btn_continue);
+        btn_continue2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                try {
+                    Intent intent = new Intent(Level2.this, Level2.class);
+                    startActivity(intent);
+                    finish();
+                    dialogEnd.dismiss();
+                } catch (Exception e) {
+
+                }
+
+            }
+        });
+
+        TextView text_description_end = dialogEnd.findViewById(id.text_description_end);
+        text_description_end.setText(R.string.level_two_end);
+
+        //______________________________
+
         // Прогресс игри
 
         final int[] progress = {
@@ -135,8 +188,8 @@ public class Level2 extends AppCompatActivity {
 
         // Генерируєм левую сторону
         numLeft = random.nextInt(10);
-        img_left.setImageResource(array.images1[numLeft]);
-        text_left.setText(array.texts1[numLeft]);
+        img_left.setImageResource(array.images2[numLeft]);
+        text_left.setText(array.texts2[numLeft]);
 
         // Генерируєм правую сторону
         numRight = random.nextInt(10);
@@ -145,8 +198,8 @@ public class Level2 extends AppCompatActivity {
             numRight = random.nextInt(10);
         }
 
-        img_right.setImageResource(array.images1[numRight]);
-        text_right.setText(array.texts1[numRight]);
+        img_right.setImageResource(array.images2[numRight]);
+        text_right.setText(array.texts2[numRight]);
 
         // Нажатиє на левую картинку
         img_left.setOnTouchListener(new View.OnTouchListener() {
@@ -200,13 +253,13 @@ public class Level2 extends AppCompatActivity {
                     }
 
                     if (count == 20) {
-
+                        dialogEnd.show();
                     } else {
                         // Генерируєм левую сторону
                         numLeft = random.nextInt(10);
-                        img_left.setImageResource(array.images1[numLeft]);
+                        img_left.setImageResource(array.images2[numLeft]);
                         img_left.startAnimation(a);
-                        text_left.setText(array.texts1[numLeft]);
+                        text_left.setText(array.texts2[numLeft]);
 
                         // Генерируєм правую сторону
                         numRight = random.nextInt(10);
@@ -215,9 +268,9 @@ public class Level2 extends AppCompatActivity {
                             numRight = random.nextInt(10);
                         }
 
-                        img_right.setImageResource(array.images1[numRight]);
+                        img_right.setImageResource(array.images2[numRight]);
                         img_right.startAnimation(a);
-                        text_right.setText(array.texts1[numRight]);
+                        text_right.setText(array.texts2[numRight]);
 
                         img_right.setEnabled(true);
                     }
@@ -278,13 +331,13 @@ public class Level2 extends AppCompatActivity {
                     }
 
                     if (count == 20) {
-
+                        dialogEnd.show();
                     } else {
                         // Генерируєм левую сторону
                         numLeft = random.nextInt(10);
-                        img_left.setImageResource(array.images1[numLeft]);
+                        img_left.setImageResource(array.images2[numLeft]);
                         img_left.startAnimation(a);
-                        text_left.setText(array.texts1[numLeft]);
+                        text_left.setText(array.texts2[numLeft]);
 
                         // Генерируєм правую сторону
                         numRight = random.nextInt(10);
@@ -293,9 +346,9 @@ public class Level2 extends AppCompatActivity {
                             numRight = random.nextInt(10);
                         }
 
-                        img_right.setImageResource(array.images1[numRight]);
+                        img_right.setImageResource(array.images2[numRight]);
                         img_right.startAnimation(a);
-                        text_right.setText(array.texts1[numRight]);
+                        text_right.setText(array.texts2[numRight]);
 
                         img_left.setEnabled(true);
                     }
